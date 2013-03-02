@@ -67,13 +67,10 @@
                   <webAppConfig>
                       <contextPath>/WebSocketServer</contextPath>
                   </webAppConfig>
-                  <!--
                   <scanIntervalSeconds>10</scanIntervalSeconds>
                   <stopKey>hoge</stopKey>
-                  <stopPort>8080</stopPort>
-                  -->
+                  <stopPort>8090</stopPort>
               </configuration>
-              <!--
               <executions>
                   <execution>
                       <id>start-jetty</id>
@@ -94,7 +91,6 @@
                       </goals>
                   </execution>
               </executions>
-              -->
           </plugin>
 
       </plugins>
