@@ -1,0 +1,52 @@
+apply plugin: 'war'
+//apply plugin: 'jetty'
+
+// see : http://fernandorubbo.blogspot.jp/2013/06/embedded-war-using-gradle.html
+
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    embeddedJetty
+}
+
+def jettyVersion = "8.1.13.v20130916"
+
+dependencies {
+    compile(
+         [group: 'org.eclipse.jetty', name: 'jetty-webapp', version: jettyVersion],
+         [group: 'org.eclipse.jetty', name: 'jetty-annotations', version: jettyVersion],
+         [group: 'org.eclipse.jetty', name: 'jetty-websocket', version: jettyVersion]
+    )
+    embeddedJetty(
+         [group: 'org.eclipse.jetty', name: 'jetty-servlet', version: jettyVersion],
+         [group: 'org.eclipse.jetty', name: 'jetty-webapp', version: jettyVersion],
+         [group: 'org.eclipse.jetty', name: 'jetty-jsp', version: jettyVersion],
+         [group: 'org.eclipse.jetty', name: 'jetty-annotations', version: jettyVersion],
+         [group: 'org.eclipse.jetty', name: 'jetty-websocket', version: jettyVersion]
+    )
+}
+
+war.baseName = name
+war {
+    from { configurations.embeddedJetty.collect {
+        project.zipTree(it)
+    }
+    }
+
+    exclude "META-INF/*.SF", "META-INF/*.RSA", "about.html", "about_files/**", "readme.txt", "plugin.properties", "jetty-dir.css"
+
+    from "$buildDir/classes/main"
+    exclude "com.rkaneko.websocket/"
+
+    manifest {
+        attributes "Main-Class": "com.rkaneko.embedded.JettyLauncher"
+    }
+}
+
+sourceSets.main.compileClasspath += configurations.embeddedJetty
