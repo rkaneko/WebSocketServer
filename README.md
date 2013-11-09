@@ -2,10 +2,12 @@ WebSocketServer
 ===
 
 * description
+
  This app is Sample chat server application implemented with WebSocket .
 
 * requirements
-Gradle v1.8
+
+ Gradle v1.8
 
 ### Usage
 
@@ -23,7 +25,7 @@ $ java -jar build/libs/WebSocketServer-1.0.war
 
 + Client side
 
- If you want to try to chat, you had better use Google Chrome extension '[Simple WebSocket Client](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo)' .
+ If you want to try to chat, you had better use Google Chrome extension '[Simple WebSocket Client](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo)' . URL is ws://127.0.0.1:8090/SampleServlet .
 
 Credit
 ---
