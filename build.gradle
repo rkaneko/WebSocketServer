@@ -3,6 +3,9 @@ apply plugin: 'war'
 
 // see : http://fernandorubbo.blogspot.jp/2013/06/embedded-war-using-gradle.html
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.8'
+}
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
